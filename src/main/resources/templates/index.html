@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+	<title>APP管理系统-首页</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="description"
+		  content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+
+	<style>
+		body, html {
+			height: 100%;
+			-webkit-tap-highlight-color: transparent;
+		}
+		.weui-footer {
+			margin: 25px 0 10px 0;
+		}
+		img {
+			width: 100%;
+			display: block;
+		}
+		.notice {
+			font-size: 14px;
+			color: #333;
+		}
+		.notice img {
+			width: 21px;
+			height: 21px;
+			float: left;
+		}
+	</style>
+	<th:block th:include="include :: weui-css"/>
+	<th:block th:include="include :: jquery-weui-css"/>
+
+
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+	<link th:href="@{/css/style.css}" rel="stylesheet"/>
+	<link th:href="@{/prometheus/css/ry-ui.css}" rel="stylesheet"/>
+
+</head>
+<body ontouchstart>
+<header class='demos-header'>
+</header>
+<div class="weui-tab">
+	<div class="weui-tab__bd">
+		<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+			<div class="page__hd">
+				<a href="javascript:;" class="wuiHover">
+					<div class="swiper-container wui-imgpic">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<img th:src="@{/img/banner.jpg}" alt="">
+							</div>
+							<div class="swiper-pagination">
+
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="weui-cell weui-cell_access ">
+				<div class="weui-cell__bd notice" id="clientName"><img th:src="@{/img/navIco1.png}" alt="">【机构名称】[[${clientName}]]</div>
+			</div>
+			<div class="weui-grids">
+				<a href="#" class="weui-grid js_grid">
+					<div class="weui-grid__icon">
+						<img th:src="@{/img/listIco4.png}" alt="">
+					</div>
+					<p class="weui-grid__label">
+						功能一
+					</p>
+				</a>
+				<a href="#" class="weui-grid js_grid" ><!--th:href="@{/app/device/water/list}"-->
+					<div class="weui-grid__icon">
+						<img th:src="@{/img/listIco.png}" alt="">
+					</div>
+					<p class="weui-grid__label">
+						功能二
+					</p>
+				</a>
+			</div>
+			<div class="weui-cell weui-cell_access ">
+				<div class="weui-cell__bd notice"><img th:src="@{/img/indexIco.png}" alt="">【系统通知】APP系统新版本V0.1发布</div>
+			</div>
+		</div>
+		<div id="tab2" class="weui-tab__bd-item">
+			<div class="col-sm-3 pr5">
+				<!--                    <div class="ibox float-e-margins">-->
+
+				<div class="ibox-content" style="font: 14px Helvetica Neue, Helvetica, PingFang SC, 微软雅黑, Tahoma, Arial, sans-serif !important;">
+					<div class="text-center">
+						<p><img class="img-circle img-lg" style="position: relative; left: 30%;"
+								th:src="(${user.avatar == null || user.avatar == ''}) ? @{/img/profile.jpg} :  @{${user.avatar}}"></p>
+						<!--                                <p><a href="javascript:avatar()">修改头像</a></p>-->
+					</div>
+					<ul class="list-group list-group-striped">
+						<li class="list-group-item"><i class="fa fa-user"></i>
+							<b class="font-noraml">登录名称：</b>
+							<p class="pull-right">[[${user.loginName}]]</p>
+						</li>
+						<li class="list-group-item"><i class="fa fa-phone"></i>
+							<b  class="font-noraml">手机号码：</b>
+							<p class="pull-right">[[${user.phoneNumber}]]</p>
+						</li>
+						<li class="list-group-item"><i class="fa fa-envelope-o"></i>
+							<b  class="font-noraml">邮箱地址：</b>
+							<p class="pull-right" >[[${user.email}]]</p>
+						</li>
+						<li class="list-group-item"><i class="fa fa-calendar"></i>
+							<b  class="font-noraml">创建时间：</b>
+							<p class="pull-right" >[[${#dates.format(user.createTime, 'yyyy-MM-dd')}]]</p>
+						</li>
+					</ul>
+				</div>
+				<!--                    </div>-->
+			</div>
+			<!--            <div class="weui-btn-area">-->
+			<!--                <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>-->
+			<!--            </div>-->
+		</div>
+	</div>
+
+	<div class="weui-tabbar">
+		<a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
+			<!--            <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>-->
+			<div class="weui-tabbar__icon">
+				<img th:src="@{/img/icon_tabbar1.png}" alt="">
+			</div>
+			<p class="weui-tabbar__label">操作</p>
+		</a>
+		<a href="#tab2" class="weui-tabbar__item">
+			<div class="weui-tabbar__icon">
+				<img th:src="@{/img/icon_tabbar3.png}" alt="">
+			</div>
+			<p class="weui-tabbar__label">我的</p>
+		</a>
+	</div>
+</div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<th:block th:include="include :: weui-js"/>
+<th:block th:include="include :: jquery-weui-js"/>
+<script>
+	$(function () {
+		FastClick.attach(document.body);
+
+		var swiper = new Swiper('.swiper-container', {
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.swiper-pagination'
+			}
+		});
+
+
+	});
+
+</script>
+<script th:src="@{/ajax/libs/jquery-weui/lib/fastclick.js}"></script>
+<script th:src="@{/ajax/libs/jquery-weui/js/swiper.js}"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prometheus.project.app.common.dictDataValue.mapper.DictDataValueMapper">
+
+	<resultMap type="DictDataValue" id="DictDataValueResult">
+		<id     property="tableName"      column="table_name"      />
+		<result property="clientId"     column="client_id"     />
+		<result property="dictType"     column="dict_type"     />
+		<result property="dataCode"     column="data_code"     />
+		<result property="dataName"     column="data_name"     />
+		<result property="parentCode"     column="parent_code"     />
+	</resultMap>
+
+	<select id="selectDictDataList" parameterType="DictDataValue" resultMap="DictDataValueResult">
+		select dict_value data_code, dict_label data_name, dict_type parent_code  from sys_dict_data
+		where status = '0'
+		<choose>
+			<when test="dictTypes != null and dictTypes.length > 0">
+				and dict_type in
+				<foreach collection="dictTypes" item="dictType" open="(" separator="," close=")">
+					#{dictType}
+				</foreach>
+			</when>
+		</choose>
+		order by dict_sort asc
+	</select>
+
+</mapper> 
